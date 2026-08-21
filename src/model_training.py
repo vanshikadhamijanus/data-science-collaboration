@@ -13,6 +13,7 @@ from sklearn.model_selection import train_test_split, cross_val_score, GridSearc
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.svm import SVC, SVR
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
     classification_report, confusion_matrix, accuracy_score,
     mean_squared_error, r2_score, mean_absolute_error
@@ -311,6 +312,19 @@ class ModelTrainer:
             logger.error(f"Error loading model: {str(e)}")
             raise
 
+"""Model training utilities."""
+
+
+def train_model(X_train, y_train):
+    """Train a machine learning model."""
+    # Use Random Forest with specific parameters
+    model = RandomForestClassifier(
+        n_estimators=100,
+        max_depth=10,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+    return model
 
 def main():
     """
